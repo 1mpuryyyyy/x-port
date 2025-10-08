@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    position: inherit;
+    width: 100%;
+    height: fit-content;
+    padding: 30px;
+    justify-content: space-around;
+}
+
+.navbar__section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.navbar__section.main {
+    gap: 20px;
+}
+
+.deal {
+    background-color: var(--green);
+    font-weight: 400;
+    
+}
