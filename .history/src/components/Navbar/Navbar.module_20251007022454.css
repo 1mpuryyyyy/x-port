@@ -1,0 +1,10 @@
+.navbar {
+    display: flex;
+    position: inherit;
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.nav
