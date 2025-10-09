@@ -1,0 +1,127 @@
+/* Общая обертка для компонента. Убедитесь, что фон задан! */
+.wrapper {
+  background-color: #111827; /* Темно-серый фон, как на картинке */
+  color: #ffffff;
+  padding: 80px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Заголовок и подзаголовок */
+.header {
+  text-align: center; /* Центрируем заголовок */
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #9ca3af;
+  max-width: 600px;
+  margin: 0 auto; /* Центрируем подзаголовок */
+}
+
+/* Контейнер для шагов */
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* Стили для отдельного шага */
+.step {
+  transition: opacity 0.4s ease;
+}
+
+/* Неактивные шаги делаем полупрозрачными */
+.inactive {
+  opacity: 0.3;
+}
+
+/* Активные и пройденные шаги делаем полностью видимыми */
+.active {
+  opacity: 1;
+}
+
+.stepTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 16px 0 8px;
+  transition: color 0.4s ease;
+}
+
+.inactive .stepTitle, .inactive .stepDescription {
+   color: #9ca3af; /* Делаем текст неактивных шагов серым */
+}
+
+.active .stepTitle {
+  color: #ffffff; /* Белый текст для активных */
+}
+
+.stepDescription {
+  font-size: 14px;
+  line-height: 1.5;
+  transition: color 0.4s ease;
+}
+
+/* Стили для кругов с номерами */
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px dotted #4b5563;
+  background-color: transparent;
+  transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+  position: relative;
+}
+
+/* Стили для кругов, которые уже пройдены */
+.circleCompleted {
+  border-style: solid;
+  border-color: #22c55e;
+}
+
+/* Анимация заполнения границы для ТЕКУЩЕГО шага */
+.circleCurrent {
+   border-color: #22c55e; /* Граница становится зеленой */
+}
+
+.circleCurrent::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  /* --progress-angle устанавливается в JSX */
+  background: conic-gradient(#22c55e var(--progress-angle, 0deg), transparent var(--progress-angle, 0deg));
+  /* Эта маска создает эффект обводки, а не сектора */
+  mask: radial-gradient(transparent 56px, black 57px);
+  -webkit-mask: radial-gradient(transparent 56px, black 57px);
+}
+
+/* Стиль для ПОСЛЕДНЕГО шага, когда он ПОЛНОСТЬЮ завершен */
+.circleFinalCompleted {
+  background-color: #6ee7b7;
+  border-color: #6ee7b7;
+  color: #111827;
+}
+
+/* Слайдер остается без изменений */
+.sliderWrapper { display: flex; justify-content: center; padding: 0 10%; }
+.slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: 2px; outline: none; transition: opacity 0.2s; }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #22c55e; border-radius: 50%; cursor: pointer; border: 3px solid #111827; box-sizing: border-box; }
+.slider::-moz-range-thumb { width: 20px; height: 20px; background: #22c55e; border-radius: 50%; cursor: pointer; border: 3px solid #111827; box-sizing: border-box; }

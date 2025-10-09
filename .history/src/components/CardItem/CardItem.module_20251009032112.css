@@ -1,0 +1,67 @@
+.card {
+    background-color: #0b0f0e;
+    /* глубокий тёмный */
+    border-radius: 30px;
+    padding: 24px;
+    width: 280px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+}
+
+/* Иконка / картинка */
+.cardImage {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 200, 0.6));
+    pointer-events: none;
+}
+
+/* Описание */
+.cardDescription {
+    color: #bfbfbf;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    z-index: 2;
+}
+
+/* Заголовок с ссылкой */
+.cardTitleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.cardTitleWrapper:hover {
+    color: #00ffc3;
+}
+
+.cardArrow {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.cardTitleWrapper:hover .cardArrow {
+    transform: translateX(4px);
+}
