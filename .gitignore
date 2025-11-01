@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-.history/
+.history
 
 .env
