@@ -369,7 +369,8 @@ export const Dashboard = () => {
             });
 
             if (response.ok) {
-                navigate('/');
+                navigate('/dashboard');
+                window.scrollTo(0, 0);
             } else {
                 const errorData = await response.json();
                 setVerificationError(errorData.message || 'Ошибка подтверждения номера');

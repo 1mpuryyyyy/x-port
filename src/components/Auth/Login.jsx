@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../store/authSlice';
 import styles from './Auth.module.css';
@@ -6,17 +6,60 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../assets/logo.svg";
 
 const Login = () => {
-    const [phoneNumber, setNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [rawPhoneNumber, setRawPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { error, loading } = useSelector((state) => state.auth);
+    const [textError, setTextError] = useState(null);
+
+    useEffect(() => {
+        if (error) {
+            setTextError(error);
+        }
+    }, [error])
+
+    const formatPhoneNumber = (value) => {
+        const digits = value.replace(/\D/g, '');
+
+        const trimmed = digits.slice(0, 11);
+
+        let formatted = '';
+        if (trimmed.startsWith('7') || trimmed.startsWith('8')) {
+            const code = trimmed.slice(1, 4) || '';
+            const part1 = trimmed.slice(4, 7) || '';
+            const part2 = trimmed.slice(7, 9) || '';
+            const part3 = trimmed.slice(9, 11) || '';
+
+            formatted = trimmed[0] === '8'
+                ? `8 (${code}) ${part1}-${part2}-${part3}`
+                : `+7 (${code}) ${part1}-${part2}-${part3}`;
+        } else if (trimmed) {
+            formatted = trimmed;
+        }
+
+        return formatted.replace(/[-\s]+$/, '');
+    };
+
+    const handlePhoneChange = (e) => {
+        const value = e.target.value;
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+
+        setRawPhoneNumber(digits);
+        setPhoneNumber(formatPhoneNumber(value));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = await dispatch(loginUser({ phoneNumber, password }));
+        if (!rawPhoneNumber || rawPhoneNumber.length !== 11) {
+            setTextError('Введите корректный номер телефона')
+            return;
+        }
+        const result = await dispatch(loginUser({ phoneNumber: rawPhoneNumber, password }));
         if (loginUser.fulfilled.match(result)) {
             navigate('/');
+            window.scrollTo(0, 0);
         }
     };
 
@@ -40,14 +83,16 @@ const Login = () => {
 
                 <form onSubmit={handleSubmit} className={styles.authForm}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">Номер телефона</label>
+                        <label htmlFor="number">Номер телефона</label>
                         <input
-                            type="text"
+                            type="tel"
                             id="number"
                             value={phoneNumber}
-                            onChange={(e) => setNumber(e.target.value)}
-                            placeholder="xport@pochta.com"
+                            onChange={handlePhoneChange}
+                            placeholder="+7 (999) 999-99-99"
                             className={styles.authInput}
+                            autoComplete="tel"
+                            inputMode="numeric"
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -61,7 +106,7 @@ const Login = () => {
                             className={styles.authInput}
                         />
                     </div>
-                    {error && <p className={styles.errorMessage}>{error}</p>}
+                    {textError && <p className={styles.errorMessage}>{textError}</p>}
                     <button type="submit" className={styles.authButton} disabled={loading}>
                         {loading ? 'Загрузка...' : 'Войти в аккаунт'}
                     </button>

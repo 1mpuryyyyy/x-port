@@ -29,6 +29,7 @@ const ProtectedRoute = ({ children }) => {
     useEffect(() => {
         if (!isAuthenticated) {
             navigate('/login');
+            window.scrollTo(0, 0);
         }
     }, [isAuthenticated, navigate]);
 

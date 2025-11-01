@@ -15,16 +15,46 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [phoneNumber, setNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [rawPhoneNumber, setRawPhoneNumber] = useState('');
     const [showVerification, setShowVerification] = useState(false);
     const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
     const [verificationLoading, setVerificationLoading] = useState(false);
     const [verificationError, setVerificationError] = useState('');
     const [autoLoginLoading, setAutoLoginLoading] = useState(false);
+    const [textError, setTextError] = useState(null);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { error, loading } = useSelector((state) => state.auth);
+    const { loading } = useSelector((state) => state.auth);
+
+    const formatPhoneNumber = (value) => {
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+        let formatted = '';
+
+        if (digits.startsWith('7') || digits.startsWith('8')) {
+            const code = digits.slice(1, 4) || '';
+            const part1 = digits.slice(4, 7) || '';
+            const part2 = digits.slice(7, 9) || '';
+            const part3 = digits.slice(9, 11) || '';
+
+            formatted = digits[0] === '8'
+                ? `8 (${code}) ${part1}-${part2}-${part3}`
+                : `+7 (${code}) ${part1}-${part2}-${part3}`;
+        } else if (digits) {
+            formatted = digits;
+        }
+
+        return formatted.replace(/[-\s]+$/, '');
+    };
+
+    const handlePhoneChange = (e) => {
+        const value = e.target.value;
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+
+        setRawPhoneNumber(digits);
+        setPhoneNumber(formatPhoneNumber(value));
+    };
 
     const handleAutoLogin = async (phoneNumber, password) => {
         setAutoLoginLoading(true);
@@ -55,9 +85,13 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = await dispatch(registerUser({ firstName, lastName, phoneNumber, email, password }));
+        if (!rawPhoneNumber || rawPhoneNumber.length !== 11) {
+            setTextError('Введите корректный номер телефона')
+            return;
+        }
+        const result = await dispatch(registerUser({ firstName, lastName, rawPhoneNumber, email, password }));
         if (registerUser.fulfilled.match(result)) {
-            await handleAutoLogin(phoneNumber, password);
+            await handleAutoLogin(rawPhoneNumber, password);
         }
     };
 
@@ -129,6 +163,7 @@ const Register = () => {
 
             if (response.ok) {
                 navigate('/');
+                window.scrollTo(0, 0);
             } else {
                 const errorData = await response.json();
                 setVerificationError(errorData.message || 'Ошибка подтверждения номера');
@@ -259,9 +294,11 @@ const Register = () => {
                             type="tel"
                             placeholder="Номер телефона"
                             value={phoneNumber}
-                            onChange={(e) => setNumber(e.target.value)}
+                            onChange={handlePhoneChange}
                             className={styles.authInput}
                             required
+                            inputMode="numeric"
+                            autoComplete="tel"
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -284,7 +321,7 @@ const Register = () => {
                             required
                         />
                     </div>
-                    {error && <p className={styles.errorMessage}>{error}</p>}
+                    {textError && <p className={styles.errorMessage}>{textError}</p>}
                     <button
                         type="submit"
                         className={styles.authButton}

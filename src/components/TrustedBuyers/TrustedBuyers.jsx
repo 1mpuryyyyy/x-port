@@ -132,6 +132,7 @@ export default function TrustedBuyersList({ market }) {
 
     function handleContact(id) {
         navigate("/deal", { state: { buyerId: id } });
+        window.scrollTo(0, 0);
     }
 
     function handleShowMore() {
@@ -139,6 +140,7 @@ export default function TrustedBuyersList({ market }) {
             setShowAll(true);
         } else {
             navigate("/login");
+            window.scrollTo(0, 0);
         }
     }
 
