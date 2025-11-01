@@ -1,0 +1,367 @@
+.container {
+    color: #ffffff;
+    padding-top: 150px;
+    min-height: 100vh;
+    display: flex;
+    gap: 13vh;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    flex-direction: column;
+    position: relative;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    align-items: flex-start;
+    gap: 80px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header__left {
+    flex: 0 1 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 2;
+}
+
+.header__left__benchmark {
+    background-color: #303430;
+    border: 1px solid #046307;
+    color: #0AFF9D;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.header__left__benchmark span {
+    color: #0AFF9D;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header__left__title {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 640px;
+    margin: 0;
+}
+
+.header__left__title span {
+    color: #18ff90;
+}
+
+.header__left__description {
+    font-size: 18px;
+    color: #c8c8c8;
+    max-width: 640px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.header__left__span {
+    font-size: 18px;
+    color: var(--light-green);
+    max-width: 640px;
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header__left__span img {
+    height: 18px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.header__left__buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.greenButton {
+    background-color: #F1F1F1;
+    color: #062965;
+    font-weight: 600;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.greenButton * {
+    color: #062965;
+}
+
+.greenButton img {
+    width: 20px;
+    height: 20px;
+}
+
+.greenButton:hover {
+    background-color: var(--emerald);
+    color: var(--black);
+}
+
+.header__right {
+    flex: 0 1 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header__right img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 1281px) {
+    .header {
+        justify-content: flex-start;
+    }
+
+    .header__right {
+        position: absolute;
+        right: 15%;
+        top: 50%;
+        transform: translateY(-50%);
+        flex: none;
+        width: 50%;
+    }
+
+    .header__right img {
+        height: 720px;
+        width: auto;
+        max-width: none;
+    }
+}
+
+
+
+@media (max-width: 1280px) {
+    .container {
+        padding-top: 100px;
+        gap: 8vh;
+    }
+
+    .header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 40px;
+        padding: 0 30px;
+    }
+
+    .header__left {
+        flex: 1 1 100%;
+        align-items: center;
+        max-width: 800px;
+        gap: 25px;
+    }
+
+    .header__left__benchmark {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    .header__left__title {
+        font-size: 42px;
+    }
+
+    .header__left__description,
+    .header__left__span {
+        font-size: 16px;
+        max-width: 600px;
+    }
+
+    .header__left__span {
+        justify-content: center;
+    }
+
+    .header__right {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header__right img {
+        height: 400px;
+        width: auto;
+        position: static;
+    }
+
+    .header__left__buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 6vh;
+    }
+
+    .header {
+        padding: 0 20px;
+        gap: 30px;
+    }
+
+    .header__left {
+        gap: 20px;
+    }
+
+    .header__left__benchmark {
+        font-size: 12px;
+        padding: 6px 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .header__left__title {
+        font-size: 36px;
+    }
+
+    .header__left__description,
+    .header__left__span {
+        font-size: 15px;
+        max-width: 100%;
+    }
+
+    .header__right img {
+        height: 320px;
+    }
+
+    .header__left__buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .greenButton {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        gap: 5vh;
+    }
+
+    .header {
+        padding: 0 16px;
+        gap: 25px;
+    }
+
+    .header__left {
+        gap: 16px;
+    }
+
+    .header__left__benchmark {
+        font-size: 11px;
+        padding: 5px 10px;
+        gap: 4px;
+    }
+
+    .header__left__title {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .header__left__description,
+    .header__left__span {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .header__right img {
+        height: 250px;
+    }
+
+    .greenButton {
+        padding: 10px 20px;
+        font-size: 14px;
+        max-width: 250px;
+    }
+
+    .greenButton img {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+    .header__left__title {
+        font-size: 24px;
+    }
+
+    .header__left__description,
+    .header__left__span {
+        font-size: 13px;
+    }
+
+    .header__right img {
+        height: 200px;
+    }
+}
+
+/* buyers секция */
+.buyers {
+    height: fit-content;
+    width: 100%;
+}
+
+.aparts {
+    background: url("/src/assets/background_apart.png");
+}
+
+.b2b {
+    background: url("/src/assets/background_hands.png");
+}
+
+.cars {
+    background: url("/src/assets/background_cars.png");
+}
+
+.lux {
+    background: url("/src/assets/background_lux.png");
+}
+
+/* Адаптивность для buyers секции */
+@media (max-width: 768px) {
+    .buyers {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buyers {
+        padding: 0 16px;
+    }
+}

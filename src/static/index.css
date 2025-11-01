@@ -1,5 +1,5 @@
 :root {
-    --display: #1E1E1E;
+    --display: #111411;
     --grey: #212124;
     --green: #046307;
     --bg-card: #303430;
@@ -77,8 +77,24 @@ button {
     transition: 0.3s ease;
 }
 
-body {
+html,
+body,
+#root {
     background-color: var(--display);
     min-height: 100vh;
     line-height: 1;
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+#contacts {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 560px) {
+    button {
+        font-size: 14px;
+    }
 }

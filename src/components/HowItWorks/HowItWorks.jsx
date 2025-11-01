@@ -1,80 +1,69 @@
-import React, { useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styles from './HowItWorks.module.css';
+import arrow from '../../assets/arrow.svg';
 
-const stepsData = [
-    { title: 'Регистрация', description: 'Вы заходите на наш сайт и проходите простую регистрацию — это займёт всего несколько минут.' },
-    { title: 'Выбор продавца', description: 'Из списка проверенных продавцов вы выбираете того, с кем хотите провести сделку.' },
-    { title: 'Создание чата', description: 'Мы создаём общий чат, где будут обсуждаться все условия и сроки сделки' },
-    { title: 'Создание чата', description: 'Мы создаём общий чат, где будут обсуждаться все условия и сроки сделки' },
-    { title: 'Создание чата', description: 'Мы создаём общий чат, где будут обсуждаться все условия и сроки сделки' },
-];
+const HowItWorks = ({ stepsData, subtitle }) => {
+    const sectionRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
-const HowItWorks = () => {
-    const [sliderValue, setSliderValue] = useState(0);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '-50px 0px'
+            }
+        );
 
-    const activeStepIndex = useMemo(() => {
-        if (sliderValue >= 100) return 4;
-        return Math.floor(sliderValue / 20);
-    }, [sliderValue]);
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
 
-    const handleSliderChange = (event) => {
-        setSliderValue(Number(event.target.value));
-    };
-
-    const sliderProgressStyle = {
-        background: `linear-gradient(to right, var(--green) ${sliderValue}%, #404040 ${sliderValue}%)`,
-    };
+        return () => {
+            if (sectionRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <div className={styles.wrapper}>
+        <section
+            className={`${styles.wrapper} ${isVisible ? styles.visible : ''}`}
+            ref={sectionRef}
+        >
             <div className={styles.header}>
                 <h2 className={styles.title}>Как это работает</h2>
-                <p className={styles.subtitle}>От идеи до договора. lorem lorem lorem lorem lorem lorem lorem</p>
+                <p className={styles.subtitle}>{subtitle}</p>
             </div>
 
             <div className={styles.stepsContainer}>
-                {stepsData.map((step, index) => {
-                    const isCompleted = index < activeStepIndex;
-                    const isCurrent = index === activeStepIndex;
-                    const isInactive = index > activeStepIndex;
-
-                    const isFinalStep = index === 4;
-                    const isFinalCompleted = isFinalStep && sliderValue >= 80;
-
-                    const circleClassName = [
-                        styles.circle,
-                        !isInactive ? styles.activeCircle : '',
-                        (isCompleted || isCurrent) && index >= 0 ? styles.quarter1 : '',
-                        (isCompleted || isCurrent) && index >= 1 ? styles.quarter2 : '',
-                        (isCompleted || isCurrent) && index >= 2 ? styles.quarter3 : '',
-                        (isCompleted || isCurrent) && index >= 3 ? styles.quarter4 : '',
-                        isFinalCompleted ? styles.circleFinalCompleted : '',
-                    ].join(' ');
-
-                    return (
-                        <div key={index} className={`${styles.step} ${isInactive ? styles.inactive : styles.active}`}>
-                            <div className={circleClassName}>
-                                {index + 1}
+                {stepsData.map((step, index) => (
+                    <React.Fragment key={index}>
+                        <div className={styles.step}>
+                            <div className={styles.stepHeader}>
+                                <div className={`${styles.circle} ${styles[`circle_${index + 1}`]}`}>
+                                    {index + 1}
+                                </div>
+                                <h3 className={styles.stepTitle}>{step.title}</h3>
                             </div>
-                            <h3 className={styles.stepTitle}>{step.title}</h3>
                             <p className={styles.stepDescription}>{step.description}</p>
                         </div>
-                    );
-                })}
-            </div>
 
-            <div className={styles.sliderWrapper}>
-                <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={sliderValue}
-                    onChange={handleSliderChange}
-                    className={styles.slider}
-                    style={sliderProgressStyle}
-                />
+                        {index < stepsData.length - 1 && (
+                            <div className={styles.arrow}>
+                                <img src={arrow} alt="arrow" />
+                            </div>
+                        )}
+                    </React.Fragment>
+                ))}
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -1,0 +1,145 @@
+:root {
+    --green-glow: #7BECB4;
+}
+
+.root {
+    width: 100%;
+    padding-top: 48px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 44px;
+    padding: 0 120px;
+    width: 100%;
+    position: relative;
+}
+
+.title {
+    font-size: 54px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+}
+
+.rightText {
+    color: #e6e6e6;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 300;
+    line-height: 1.16;
+}
+
+.rightText__span {
+    font-weight: 400;
+}
+
+.carouselWrapper {
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+    height: 150px;
+    mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+}
+
+.carousel {
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+}
+
+.carouselTrack {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    width: max-content;
+    height: 150px;
+    animation: carousel-move 22s linear infinite;
+}
+
+@keyframes carousel-move {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+.partnerCard {
+    min-width: 230px;
+    max-width: 230px;
+    height: 130px;
+    border: 2px solid var(--green);
+    border-radius: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 0 16px 0 rgba(90, 255, 177, 0.13);
+    transition: box-shadow 0.19s;
+}
+
+.partnerName {
+    color: var(--green-glow);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-shadow:
+        0 0 4px var(--green),
+        0 0 18px var(--green-glow);
+    line-height: 1;
+    text-align: center;
+    user-select: none;
+    font-family: inherit;
+}
+
+.carouselMaskLeft,
+.carouselMaskRight {
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.carouselMaskLeft {
+    left: 0;
+    background: linear-gradient(90deg, #111614 0%, transparent 100%);
+}
+
+.carouselMaskRight {
+    right: 0;
+    background: linear-gradient(270deg, #111614 0%, transparent 100%);
+}
+
+@media screen and (max-width: 740px) {
+    .title {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .headerRow {
+        display: inline;
+        text-align: center;
+    }
+
+    .rightText {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+}

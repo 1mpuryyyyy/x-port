@@ -1,14 +1,15 @@
-// import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
-import Navbar from "./Navbar/Navbar.jsx";;
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar/Navbar.jsx"; import Footer from "./Footer/Footer.jsx";
+;
 
 export default function Layout() {
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     return (
         <div>
-            {/* {!isAuthenticated && <Navigate to={"/"} />} */}
             <Navbar />
             <Outlet />
+            <div id="contacts">
+                <Footer />
+            </div>
         </div>
     );
 }

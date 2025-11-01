@@ -1,0 +1,604 @@
+:root {
+    --bg: #0f1312;
+    --card: #141716;
+    --muted: #9aa1a0;
+    --accent: #23c06e;
+    --pill: #1f2322;
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+.root {
+    padding: 56px 50px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.title {
+    font-size: 44px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.searchWrap {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 6px 8px;
+}
+
+.search {
+    background: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    width: 260px;
+    padding: 6px 8px;
+    font-size: 15px;
+}
+
+/* Filter toggle */
+.filterToggle {
+    background: transparent;
+    color: #fff;
+    border: none;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 10px;
+}
+
+.filterIcon {
+    fill: #cbd5d0;
+    opacity: 0.9;
+}
+
+/* Filters panel */
+.filtersPanel {
+    display: none;
+    gap: 18px;
+    margin-bottom: 22px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.filtersPanel.open {
+    display: flex;
+}
+
+.filtersCol {
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filtersColRight {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.filterLabel {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.sortOptions button {
+    background: var(--card);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sortOptions button:hover {
+    opacity: 0.95;
+}
+
+.sortOptions .activeSort {
+    background: linear-gradient(90deg, rgba(35, 192, 110, 0.16), rgba(35, 192, 110, 0.06));
+    border: 1px solid rgba(35, 192, 110, 0.18);
+}
+
+.marketList {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.marketItem {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* ranges */
+.range {
+    width: 160px;
+}
+
+.smallNote {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.filterActions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.resetBtn {
+    background: transparent;
+    color: var(--muted);
+    border: 1px dashed rgba(255, 255, 255, 0.04);
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.applyBtn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 48px;
+    margin-top: 8px;
+}
+
+/* Card */
+.card {
+    display: flex;
+    gap: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 16px;
+    padding: 18px;
+    box-sizing: border-box;
+    align-items: center;
+    min-height: 170px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+/* photo */
+.photoWrap {
+    flex: 0 0 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.photo {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* info */
+.info {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.name {
+    font-size: 28px;
+    margin: 0;
+}
+
+.ratingRow {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+}
+
+.ratingValue {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.reviewsCount {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+/* stars */
+.stars {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.starFilled {
+    color: #ffc700;
+    filter: drop-shadow(0 4px 14px rgba(255, 200, 30, 0.15));
+}
+
+.starEmpty {
+    color: rgba(255, 255, 255, 0.08);
+}
+
+.ratingStars {
+    display: flex;
+    gap: 10px;
+}
+
+/* badges */
+.badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.badge {
+    background: var(--pill);
+    color: #e8efe8;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* meta items */
+.metaRow {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.metaItem {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metaLabel {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.metaValue {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* actions */
+.actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.contactBtn {
+    background-color: var(--green);
+    font-weight: 400;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 12px;
+    padding: 12px 22px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contactBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.contactBtn:hover::before {
+    left: 100%;
+}
+
+.contactBtn:hover {
+    transform: scale(1.05);
+}
+
+.card:hover .contactBtn::before {
+    left: 100%;
+}
+
+@media (max-width: 980px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo {
+        height: 180px;
+    }
+
+    .photoWrap {
+        flex: 0 0 140px;
+    }
+
+    .name {
+        font-size: 22px;
+    }
+}
+
+
+@media (max-width: 440px) {
+
+    .root {
+        padding: 20px 4vw;
+    }
+
+    .headerRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .controls {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .searchWrap {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .search {
+        width: 100%;
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+
+    .filtersPanel {
+        position: fixed;
+        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+        margin: 0;
+        z-index: 1400;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.95));
+        transform: translateY(100%);
+        transition: transform 0.32s cubic-bezier(.2, .9, .3, 1);
+        overflow: auto;
+    }
+
+    .filtersPanel.open {
+        transform: translateY(0);
+    }
+
+    .filtersCol,
+    .filtersColRight {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .filterActions {
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .range {
+        width: 100%;
+    }
+
+    .smallNote {
+        margin-top: 8px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 12px;
+        gap: 12px;
+        min-height: auto;
+    }
+
+    .ratingRow {
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+    }
+
+    .photoWrap {
+        width: fit-content;
+        flex: 0 0 auto;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .photo {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+    .info {
+        gap: 8px;
+        padding: 0;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .ratingRow {
+        gap: 8px;
+    }
+
+    .badges {
+        gap: 8px;
+    }
+
+    .badge {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .metaRow {
+        flex-direction: row;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .metaLabel {
+        font-size: 11px;
+    }
+
+    .metaValue {
+        font-size: 15px;
+    }
+
+    .actions {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .contactBtn {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .stars svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .filterToggle {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .reviewsCount {
+        margin: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .photo {
+        height: 200px;
+    }
+
+    .name {
+        font-size: 18px;
+    }
+
+    .search {
+        font-size: 14px;
+    }
+
+    .contactBtn {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+
+.filterToggle,
+.resetBtn,
+.applyBtn,
+.sortOptions button {
+    touch-action: manipulation;
+}
+
+.filters-open {
+    overflow: hidden;
+}
+
+.loadMoreWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.loadMoreBtn {
+    background: var(--white);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 22px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.loadMoreBtn:hover {
+    background: #ffffffcc;
+}
