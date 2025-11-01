@@ -84,7 +84,7 @@ export default function Navbar() {
                         <div className={style.navbar__section}>
                             {isAuthenticated ? (
                                 <div className={style.userSection}>
-                                    <p>Добро пожаловать, <Link to={'/dashboard'}><span className={style.name}>{user?.firstName}</span></Link></p>
+                                    <p>Добро пожаловать, <span className={style.name} onClick={() => { navigate('/dashboard'); window.scrollTo(0, 0) }}>{user?.firstName}</span></p>
                                     <button className={style.logoutBtn} onClick={handleLogout}>Выйти</button>
                                 </div>
                             ) : (
