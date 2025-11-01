@@ -230,7 +230,7 @@ const duplicatedBuyers = Array.from({ length: 10 }).map((_, i) => {
     return {
         ...base,
         id: 11 + i,
-        name: `${base.name} ${i + 1}`,
+        name: `${base.name}`,
     };
 });
 

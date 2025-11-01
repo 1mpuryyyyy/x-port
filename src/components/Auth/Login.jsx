@@ -67,12 +67,10 @@ const Login = () => {
         <div className={styles.authContainer}>
             <div className={styles.navbar__section}>
                 <div className={styles.navbar__container}>
-                    <Link to="/" className={styles.navbar__logo}>
+                    <Link to="/" className={`${styles.navbar__logo} ${styles.navbar__logo__auth}`}>
                         <img src={logo} alt="Логотип" title='XPORT' />
                     </Link>
-                    <p className={styles.logo__title}>XPORT</p>
                 </div>
-                <p>Войдите или создайте учетную запись</p>
             </div>
 
             <div className={styles.authBox}>
@@ -83,33 +81,45 @@ const Login = () => {
 
                 <form onSubmit={handleSubmit} className={styles.authForm}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="number">Номер телефона</label>
-                        <input
-                            type="tel"
-                            id="number"
-                            value={phoneNumber}
-                            onChange={handlePhoneChange}
-                            placeholder="+7 (999) 999-99-99"
-                            className={styles.authInput}
-                            autoComplete="tel"
-                            inputMode="numeric"
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="tel"
+                                placeholder="+7 (999) 999-99-99"
+                                value={phoneNumber}
+                                onChange={handlePhoneChange}
+                                className={styles.authInput}
+                                required
+                                inputMode="numeric"
+                                autoComplete="tel"
+                            />
+                            <label className={styles.floatingLabel}>Номер телефона</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <label htmlFor="password">Пароль</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="************"
-                            className={styles.authInput}
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="password"
+                                placeholder="**********"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className={styles.authInput}
+                                required
+                            />
+                            <label className={styles.floatingLabel}>Пароль</label>
+                        </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input type='checkbox' id='rememberMe' className={styles.authCheckbox} />
+                        <label htmlFor='rememberMe' className={styles.authCheckboxLabel}>Запомнить меня</label>
                     </div>
                     {textError && <p className={styles.errorMessage}>{textError}</p>}
                     <button type="submit" className={styles.authButton} disabled={loading}>
                         {loading ? 'Загрузка...' : 'Войти в аккаунт'}
                     </button>
+                    <div className={styles.formGroup}>
+                        <p className={styles.authLink}>Помощь</p>
+                        <p className={styles.authLink}>Забыли пароль?</p>
+                    </div>
                 </form>
             </div>
         </div>

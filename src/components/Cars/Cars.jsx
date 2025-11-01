@@ -30,7 +30,7 @@ export const Cars = () => {
                     <button className={style.greenButton} ><p>Начать сделку </p> <img className={style.arrow} src={arr} /></button>
                 </div>
             </div>
-            <div className={style.header__right}>
+            <div className={`${style.header__right} ${style.car}`}>
                 <img src={Car} />
             </div>
         </div>

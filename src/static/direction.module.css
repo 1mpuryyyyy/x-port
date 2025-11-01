@@ -141,15 +141,24 @@
 
     .header__right {
         position: absolute;
-        right: 15%;
+        right: 4%;
         top: 50%;
         transform: translateY(-50%);
         flex: none;
         width: 50%;
     }
 
+    .car {
+        right: 25%;
+    }
+
+    .handles {
+        right: 7%;
+    }
+
+
     .header__right img {
-        height: 720px;
+        height: 100%;
         width: auto;
         max-width: none;
     }
@@ -315,7 +324,6 @@
     }
 }
 
-/* Очень маленькие экраны */
 @media (max-width: 360px) {
     .header__left__title {
         font-size: 24px;

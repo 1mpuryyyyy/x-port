@@ -259,7 +259,7 @@ const Register = () => {
                     </Link>
                     <p className={styles.logo__title}>XPORT</p>
                 </div>
-                <p>Войдите или создайте учетную запись</p>
+                <p className={styles.logo__subtitle}>Войдите или создайте учетную запись</p>
             </div>
 
             <div className={styles.authBox}>
@@ -270,57 +270,78 @@ const Register = () => {
 
                 <form onSubmit={handleSubmit} className={styles.authForm}>
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            placeholder="Имя"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            className={styles.authInput}
-                            required
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className={`${styles.authInput}`}
+                                placeholder='Роберт'
+                                required
+                            />
+                            <label className={styles.floatingLabel}>Имя</label>
+                        </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="text"
+                                placeholder="Иванов"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                className={styles.authInput}
+                                required
+                            />
+                            <label className={styles.floatingLabel}>Фамилия</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            placeholder="Фамилия"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            className={styles.authInput}
-                            required
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="tel"
+                                placeholder="+7 (999) 999-99-99"
+                                value={phoneNumber}
+                                onChange={handlePhoneChange}
+                                className={styles.authInput}
+                                required
+                                inputMode="numeric"
+                                autoComplete="tel"
+                            />
+                            <label className={styles.floatingLabel}>Номер телефона</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <input
-                            type="tel"
-                            placeholder="Номер телефона"
-                            value={phoneNumber}
-                            onChange={handlePhoneChange}
-                            className={styles.authInput}
-                            required
-                            inputMode="numeric"
-                            autoComplete="tel"
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="email"
+                                placeholder="mail@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className={styles.authInput}
+                                required
+                            />
+                            <label className={styles.floatingLabel}>Почта</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <input
-                            type="email"
-                            placeholder="Почта"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className={styles.authInput}
-                            required
-                        />
+                        <div className={styles.inputContainer}>
+                            <input
+                                type="password"
+                                placeholder="**********"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className={styles.authInput}
+                                required
+                            />
+                            <label className={styles.floatingLabel}>Пароль</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <input
-                            type="password"
-                            placeholder="Пароль"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className={styles.authInput}
-                            required
-                        />
+                        <input type='checkbox' id='rememberMe' className={styles.authCheckbox} />
+                        <label htmlFor='rememberMe' className={styles.authCheckboxLabel}>Запомнить меня</label>
                     </div>
+
                     {textError && <p className={styles.errorMessage}>{textError}</p>}
                     <button
                         type="submit"
@@ -329,6 +350,9 @@ const Register = () => {
                     >
                         {loading || autoLoginLoading ? 'Создание аккаунта...' : 'Создать аккаунт'}
                     </button>
+                    <div className={styles.formGroup}>
+                        <p className={styles.authLink}>Помощь</p>
+                    </div>
                 </form>
             </div>
         </div>
