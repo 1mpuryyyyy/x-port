@@ -59,6 +59,10 @@
 
 .sectionHeader {
     margin-bottom: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .sectionTitle {
@@ -453,4 +457,120 @@
     filter: invert(1);
     height: 30px;
     cursor: pointer;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalOverlay .authBox {
+    position: relative;
+    z-index: 1001;
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.successMessage {
+    color: var(--light-green);
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+
+.authBox {
+    position: relative;
+    background-color: #000;
+    padding: 40px;
+    border-radius: 20px;
+    width: 80vw;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(10, 255, 157, 0.15), 0 0 80px rgba(10, 255, 157, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.authBox:hover {
+    box-shadow: 0 0 50px rgba(10, 255, 157, 0.3), 0 0 100px rgba(10, 255, 157, 0.15);
+}
+
+.authForm {
+    text-align: left;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.inputContainer {
+    position: relative;
+    width: 100%;
+}
+
+.authInput {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #444;
+    border-radius: 16px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.authInput::placeholder {
+    color: #777;
+}
+
+.floatingLabel {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 1em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: #000;
+    padding: 0 8px;
+}
+
+.authInput+.floatingLabel {
+    top: 0;
+    font-size: 0.8em;
+}
+
+.authInput:focus+label {
+    color: var(--light-green);
 }

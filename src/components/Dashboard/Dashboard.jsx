@@ -16,6 +16,10 @@ export const Dashboard = () => {
     const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
     const [verificationLoading, setVerificationLoading] = useState(false);
     const [verificationError, setVerificationError] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [showPasswordModal, setShowPasswordModal] = useState(false);
+    const [passwordChanged, setPasswordChanged] = useState(false);
+    const [textError, setTextError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -69,7 +73,6 @@ export const Dashboard = () => {
         });
     }
 
-    // управление инпутами и мок-сохранение ----
     const handleInputChange = (field, value) => {
         if (field === 'birthDate') {
             const digits = value.replace(/\D/g, '').slice(0, 8);
@@ -134,16 +137,112 @@ export const Dashboard = () => {
         }
     };
 
+    const handlePasswordChange = async (e) => {
+        e.preventDefault();
+        if (!newPassword) {
+            setTextError('Введите новый пароль');
+            return;
+        }
+
+        try {
+            const token = Cookies.get('token');
+            const response = await fetch(`${API_URL}/users/me/password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ newPassword }),
+            });
+
+            if (response.ok) {
+                setShowPasswordModal(false);
+                setPasswordChanged(true);
+                setNewPassword('');
+                setTextError(null);
+            } else {
+                setTextError('Ошибка при смене пароля');
+            }
+        } catch {
+            setTextError('Ошибка при смене пароля');
+        }
+    };
+
+    const handleForgotPasswordClick = () => {
+        setShowPasswordModal(true);
+        setPasswordChanged(false);
+        setTextError(null);
+    };
+
+    const handleCloseModal = () => {
+        setShowPasswordModal(false);
+        setNewPassword('');
+        setTextError(null);
+    };
+
     const renderPersonalData = () => (
         <div className={styles.section}>
             <div className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Учетные данные</h2>
-                <p className={styles.sectionDescription}>
-                    Вы можете менять свои личные данные, подтверждать почту, управлять аккаунтом
-                    и настройками безопасности в защищённом сервисе
-                </p>
+                <div>
+                    <h2 className={styles.sectionTitle}>Учетные данные</h2>
+                    <p className={styles.sectionDescription}>
+                        Вы можете менять свои личные данные, подтверждать почту, управлять аккаунтом
+                        и настройками безопасности в защищённом сервисе
+                    </p>
+                </div>
+                <button onClick={handleForgotPasswordClick}>Сменить пароль</button>
             </div>
+            {passwordChanged && (
+                <div className={styles.successMessage} style={{ color: 'var(--light-green)', marginBottom: '15px', textAlign: 'center' }}>
+                    Вы успешно поменяли пароль
+                </div>
+            )}
+            {showPasswordModal && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.authBox}>
+                        <h2 className={styles.authTitle}>Смена пароля</h2>
+                        <p className={styles.authSubtitle}>
+                            Введите новый пароль
+                        </p>
 
+                        <form onSubmit={handlePasswordChange} className={styles.authForm}>
+                            <div className={styles.formGroup}>
+                                <div className={styles.inputContainer}>
+                                    <input
+                                        type="password"
+                                        placeholder="**********"
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        className={styles.authInput}
+                                        required
+                                    />
+                                    <label className={styles.floatingLabel}>Новый пароль</label>
+                                </div>
+                            </div>
+
+                            {textError && <p className={styles.errorMessage}>{textError}</p>}
+
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '35px' }}>
+                                <button
+                                    type="button"
+                                    className={styles.authButton}
+                                    style={{ backgroundColor: '#444', margin: 0 }}
+                                    onClick={handleCloseModal}
+                                >
+                                    Отмена
+                                </button>
+                                <button
+                                    type="submit"
+                                    className={styles.authButton}
+                                    style={{ margin: 0 }}
+                                >
+                                    Сменить пароль
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
             <div className={styles.dataGrid}>
                 <div className={styles.dataItem}>
                     <span className={styles.dataLabel}>ФИО</span>
