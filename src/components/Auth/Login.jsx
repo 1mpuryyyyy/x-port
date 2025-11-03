@@ -76,12 +76,12 @@ const Login = () => {
         }
 
         try {
-            const response = await fetch(`${API_URL}/users/me/password`, {
+            const response = await fetch(`${API_URL}/users/password/reset/phone`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ newPassword }),
+                body: JSON.stringify({ phoneNumber: rawPhoneNumber, newPassword }),
             });
 
             if (response.ok) {
@@ -190,6 +190,21 @@ const Login = () => {
                         </p>
 
                         <form onSubmit={handlePasswordChange} className={styles.authForm}>
+                            <div className={styles.formGroup}>
+                                <div className={styles.inputContainer}>
+                                    <input
+                                        type="tel"
+                                        placeholder="+7 (999) 999-99-99"
+                                        value={phoneNumber}
+                                        onChange={handlePhoneChange}
+                                        className={styles.authInput}
+                                        required
+                                        inputMode="numeric"
+                                        autoComplete="tel"
+                                    />
+                                    <label className={styles.floatingLabel}>Номер телефона</label>
+                                </div>
+                            </div>
                             <div className={styles.formGroup}>
                                 <div className={styles.inputContainer}>
                                     <input

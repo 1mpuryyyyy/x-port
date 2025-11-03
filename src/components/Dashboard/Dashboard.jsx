@@ -146,7 +146,7 @@ export const Dashboard = () => {
 
         try {
             const token = Cookies.get('token');
-            const response = await fetch(`${API_URL}/users/me/password`, {
+            const response = await fetch(`${API_URL}/users/password/reset`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
