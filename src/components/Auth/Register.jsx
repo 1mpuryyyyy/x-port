@@ -39,8 +39,8 @@ const Register = () => {
             const part3 = digits.slice(9, 11) || '';
 
             formatted = digits[0] === '8'
-                ? `8 (${code}) ${part1}-${part2}-${part3}`
-                : `+7 (${code}) ${part1}-${part2}-${part3}`;
+                ? `8 ${code} ${part1}-${part2}-${part3}`
+                : `+7 ${code} ${part1}-${part2}-${part3}`;
         } else if (digits) {
             formatted = digits;
         }
@@ -51,7 +51,6 @@ const Register = () => {
     const handlePhoneChange = (e) => {
         const value = e.target.value;
         const digits = value.replace(/\D/g, '').slice(0, 11);
-
         setRawPhoneNumber(digits);
         setPhoneNumber(formatPhoneNumber(value));
     };
@@ -63,17 +62,18 @@ const Register = () => {
             if (loginUser.fulfilled.match(result)) {
 
                 const token = Cookies.get('token');
-                axios.post(`${API_URL}/users/phone/send-code`, {}, {
+                axios.post(`${API_URL}/users/me/phone/send-code`, {}, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                 }).catch((err) => {
                     console.error('Ошибка отправки кода подтверждения:', err);
+                    setVerificationError('Ошибка отправки кода подтверждения');
                 });
                 setShowVerification(true);
             } else {
-                setVerificationError('Ошибка автоматического входа. Попробуйте войти manually.');
+                setVerificationError('Ошибка автоматического входа. Попробуйте войти самостоятельно.');
             }
         } catch (error) {
             console.error(error);
@@ -89,9 +89,18 @@ const Register = () => {
             setTextError('Введите корректный номер телефона')
             return;
         }
-        const result = await dispatch(registerUser({ firstName, lastName, rawPhoneNumber, email, password }));
+
+        let phoneNumber = rawPhoneNumber;
+        const result = await dispatch(registerUser({ firstName, lastName, phoneNumber, email, password }));
+
         if (registerUser.fulfilled.match(result)) {
             await handleAutoLogin(rawPhoneNumber, password);
+        } else {
+            if (result.payload) {
+                setTextError(result.payload);
+            } else if (result.error) {
+                setTextError(result.error.message || 'Произошла ошибка при регистрации');
+            }
         }
     };
 
@@ -193,7 +202,7 @@ const Register = () => {
                 </div>
 
                 <div className={styles.authBox}>
-                    <img src={arrow} alt='Назад' title='Назад' className={styles.backButton} onClick={() => setShowVerification(false)} />
+                    <img src={arrow} alt='Назад' title='Назад' className={styles.backButton} onClick={() => { setShowVerification(false); navigate('/') }} />
                     <h2 className={styles.authTitle}>Подтверждение номера</h2>
                     <p className={styles.authSubtitle}>
                         Мы отправили SMS с кодом подтверждения на номер {phoneNumber}
@@ -300,7 +309,7 @@ const Register = () => {
                         <div className={styles.inputContainer}>
                             <input
                                 type="tel"
-                                placeholder="+7 (999) 999-99-99"
+                                placeholder="+7 999 999-99-99"
                                 value={phoneNumber}
                                 onChange={handlePhoneChange}
                                 className={styles.authInput}
@@ -348,7 +357,7 @@ const Register = () => {
                         className={styles.authButton}
                         disabled={loading || autoLoginLoading}
                     >
-                        {loading || autoLoginLoading ? 'Создание аккаунта...' : 'Создать аккаунт'}
+                        {loading || autoLoginLoading || verificationLoading ? 'Создание аккаунта...' : 'Создать аккаунт'}
                     </button>
                     <div className={styles.formGroup}>
                         <p className={styles.authLink}>Помощь</p>

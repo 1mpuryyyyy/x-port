@@ -246,12 +246,11 @@
         justify-content: space-between;
         z-index: 100;
         transition: background 0.2s;
-        background: rgba(71, 98, 73, 0.2);
+        background: rgba(21, 55, 23, 0.61);
         border-bottom-left-radius: 16px;
         border-bottom-right-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(71, 98, 73, 0.3);
-        backdrop-filter: blur(10px);
     }
 
     .logo__title {

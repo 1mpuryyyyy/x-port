@@ -102,9 +102,9 @@ export const MainPage = () => {
     const stepsData = [
         { title: 'Регистрация', description: 'Вы заходите на наш сайт и проходите простую регистрацию — это займёт всего несколько минут.' },
         { title: 'Выбор продавца', description: 'Из списка проверенных продавцов вы выбираете того, с кем хотите провести сделку.' },
-        { title: 'Создание чата', description: 'Мы создаём общий чат, где будут обсуждаться все условия и сроки сделки' },
+        { title: 'Оформление сделки', description: 'Обсуждение деталей с личным менеджером: условия, сроки сделки, сумма' },
         { title: 'Подтверждение', description: 'Стороны договорились — подтверждаем условия и переводим средства.' },
-        { title: 'Завершение', description: 'Сделка завершена, деньги и товар получили свои стороны.' },
+        { title: 'Завершение', description: 'Сделка завершена, вы получаете товар, продавец - средства.' },
     ];
     return (
         <section className={style.container}>
@@ -119,7 +119,8 @@ export const MainPage = () => {
                     </div>
 
                     <h1 className={style.header__left__title}>Ваши сделки под защитой. <span>Гарант</span>, которому доверяют</h1>
-                    <p className={style.header__left__description}>XPORT Escrow фиксирует средства и переведёт их продавцу только после вашего подтверждения получения товара или услуги. Подходит для авто, криптовалют и предметов люкса</p>
+                    <p className={style.header__left__description}>XPORT - проводим любые международные сделки. Получаем, фиксируем и переводим средства
+                        продавцу только после подтверждения получения товара.</p>
                     <div className={style.header__left__buttons}>
                         <button className={style.greenButton} onClick={handleStartDeal}><p>Подробнее </p> <img className={style.arrow} src={blueArr} /></button>
                         <button>Как это работает </button>
@@ -183,8 +184,9 @@ export const MainPage = () => {
                     className={style.planet__bg}
                 />
                 <div className={style.planet__container}>
-                    <h1>На любой точке планеты</h1>
-                    <p>купи купи купи купи купи купи купи купи купи купи купи купи купи купи купи купи купи</p>
+                    <h1>На любой точке планеты — ваша сделка под надежным контролем.</h1>
+                    <p>XPORT убирает тревогу, делая глобальные покупки и продажи безопасными. Будьте
+                        свободны - покупайте что угодно и где угодно, зная, что ваши средства в надёжных руках</p>
                     <div>
                         <button className={style.greenButton} onClick={handleStartDeal}>Подробнее</button>
                     </div>
@@ -196,13 +198,13 @@ export const MainPage = () => {
                     <CardItem
                         imageUrl={house}
                         title="Недвижимость"
-                        description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+                        description="Покупка дома, квартиры или коммерческой недвижимости"
                         link="apartments"
                     />
                     <CardItem
                         imageUrl={car}
                         title="Автомобили"
-                        description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+                        description="Новые и подержанные авто любого класса"
                         link="cars"
                     />
                 </div>
@@ -210,18 +212,18 @@ export const MainPage = () => {
                     <CardItem
                         imageUrl={lux}
                         title="Люксовые товары"
-                        description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+                        description="Аутентичные товары любой ценности - сумки, часы, ювелирные изделия и др"
                         link="lux-items"
                     />
                     <CardItem
                         imageUrl={b2b}
                         title="B2B сделки"
-                        description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+                        description="Коммерческие партии оборудования и товаров"
                         link="b2b"
                     />
                 </div>
             </div>
-            <Slider stepsData={stepsData} subtitle={"От идеи до договора. lorem lorem lorem lorem lorem lorem lorem"} />
+            <Slider stepsData={stepsData} subtitle={"От идеи до договора"} />
 
             <InternetChanges />
 

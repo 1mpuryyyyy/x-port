@@ -40,19 +40,7 @@ export const registerUser = createAsyncThunk(
             const data = { firstName, lastName, phoneNumber, email, password };
             await axios.post(`${API_URL}/auth/register`, data);
 
-            const loginResponse = await axios.post(`${API_URL}/auth/login`, { email, password });
-            const { token } = loginResponse.data;
-
-            Cookies.set('token', token, { expires: 7 });
-
-            const userResponse = await axios.get(`${API_URL}/users/me`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            return {
-                token,
-                user: userResponse.data
-            };
+            return {};
         } catch (err) {
             return rejectWithValue(err.response?.data?.message || 'Ошибка регистрации');
         }
