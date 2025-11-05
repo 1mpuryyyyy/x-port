@@ -9,7 +9,7 @@ import TrustedBuyersList from '../TrustedBuyers/TrustedBuyers';
 export const B2B = () => {
     const stepsData = [
         { title: 'Регистрация', description: 'Вы заходите на наш сайт и проходите простую регистрацию — это займёт всего несколько минут.' },
-        { title: 'Выбор шаблонов', description: 'Просмотрите каталог шаблонов и выберите подходящий вариант.' },
+        { title: 'Выбор шаблонов', description: 'Просмотрите каталог байеров и выберите подходящий вариант.' },
         { title: 'Связь с байером', description: 'Мы создаём безопасный чат для обсуждения деталей сделки, осмотра автомобиля и согласования условий.' },
         { title: 'Безопасная сделка', description: 'Проведите сделку с нашей гарантией: мы обеспечиваем безопасность платежей и юридическое сопровождение' },
         { title: 'Гарантия и поддержка', description: 'После покупки вы получаете гарантийную поддержку и помощь в решении любых вопросов.' },
@@ -18,13 +18,13 @@ export const B2B = () => {
         <div className={style.header} id="about">
             <div className={style.header__left}>
                 <div className={style.header__left__benchmark}>
-                    <span className={style.lock}><img src={lock} />Безопасные сделки по недвижимости</span>
+                    <span className={style.lock}><img src={lock} />Безопасные сделки по криптовалюте</span>
                     <span>·</span>
                     <span>Гарантия XPORT Escrow </span>
                 </div>
 
-                <h1 className={style.header__left__title}>Ваш <span>персональный байер</span> по покупке/продаже недвижимости</h1>
-                <p className={style.header__left__description}>Недвижимость под защитой. Покупка и продажа без рисков и переплат. Мы гарантируем безопасную сделку через XPORT Escrow</p>
+                <h1 className={style.header__left__title}>Ваш <span>персональный байер</span> по покупке/продаже криптовалюты</h1>
+                <p className={style.header__left__description}>Сделка под защитой. Покупка и продажа без рисков и переплат. Мы гарантируем безопасную сделку через XPORT Escrow</p>
                 <p className={style.header__left__span}> <img src={boldLock} />Гарант, которому доверяют более 1000 клиентов</p>
                 <div className={style.header__left__buttons}>
                     <button className={style.greenButton} ><p>Начать сделку </p> <img className={style.arrow} src={arr} /></button>
@@ -34,7 +34,7 @@ export const B2B = () => {
                 <img src={b2b} />
             </div>
         </div>
-        <HowItWorks stepsData={stepsData} subtitle={'Найдите b2b своей мечты с полной уверенностью в безопасности сделки.'} />
+        <HowItWorks stepsData={stepsData} subtitle={'Совершите сделку своей мечты с полной уверенностью в безопасности сделки.'} />
         <div className={`${style.buyers} ${style.b2b}`}>
             <TrustedBuyersList market={'B2B'} />
         </div>

@@ -223,7 +223,7 @@ export const MainPage = () => {
                     />
                 </div>
             </div>
-            <Slider stepsData={stepsData} subtitle={"От идеи до договора"} />
+            <Slider stepsData={stepsData} subtitle={"От идеи до договора. Все прозрачно"} />
 
             <InternetChanges />
 

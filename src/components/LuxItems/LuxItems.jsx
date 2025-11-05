@@ -9,8 +9,8 @@ import TrustedBuyersList from '../TrustedBuyers/TrustedBuyers';
 export const LuxItems = () => {
     const stepsData = [
         { title: 'Регистрация', description: 'Вы заходите на наш сайт и проходите простую регистрацию — это займёт всего несколько минут.' },
-        { title: 'Выбор недвижимости', description: 'Просмотрите каталог недвижимости и выберите подходящий вариант.' },
-        { title: 'Связь с продавцом', description: 'Мы создаём безопасный чат для обсуждения деталей сделки, осмотра автомобиля и согласования условий.' },
+        { title: 'Выбор недвижимости', description: 'Просмотрите каталог байеров и выберите подходящий вариант.' },
+        { title: 'Связь с продавцом', description: 'Мы создаём безопасный чат для обсуждения деталей сделки, осмотра товара и согласования условий.' },
         { title: 'Безопасная сделка', description: 'Проведите сделку с нашей гарантией: мы обеспечиваем безопасность платежей и юридическое сопровождение' },
         { title: 'Гарантия и поддержка', description: 'После покупки вы получаете гарантийную поддержку и помощь в решении любых вопросов.' },
     ];
@@ -18,13 +18,13 @@ export const LuxItems = () => {
         <div className={style.header} id="about">
             <div className={style.header__left}>
                 <div className={style.header__left__benchmark}>
-                    <span className={style.lock}><img src={lock} />Безопасные сделки по недвижимости</span>
+                    <span className={style.lock}><img src={lock} />Безопасные сделки по товарам класса люкс</span>
                     <span>·</span>
                     <span>Гарантия XPORT Escrow </span>
                 </div>
 
-                <h1 className={style.header__left__title}>Ваш <span>персональный байер</span> по покупке/продаже недвижимости</h1>
-                <p className={style.header__left__description}>Недвижимость под защитой. Покупка и продажа без рисков и переплат. Мы гарантируем безопасную сделку через XPORT Escrow</p>
+                <h1 className={style.header__left__title}>Ваш <span>персональный байер</span> по покупке/продаже люксовых товаров</h1>
+                <p className={style.header__left__description}>Товары под защитой. Покупка и продажа без рисков и переплат. Мы гарантируем безопасную сделку через XPORT Escrow</p>
                 <p className={style.header__left__span}> <img src={boldLock} />Гарант, которому доверяют более 1000 клиентов</p>
                 <div className={style.header__left__buttons}>
                     <button className={style.greenButton} ><p>Начать сделку </p> <img className={style.arrow} src={arr} /></button>
