@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./TrustedFaces.module.css";
-import { trustedFaces } from "./trustedFaces.mock";
+import { trustedFaces } from "./TrustedFaces.mock";
 import arrow from "../../assets/arrow.svg";
 
 function getVisibleCards() {
