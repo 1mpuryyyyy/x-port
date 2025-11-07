@@ -2,7 +2,7 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 COPY . .
 ARG VITE_API_BASE_URL=/api
 RUN echo "VITE_API_BASE_URL=$VITE_API_BASE_URL" > .env.local
