@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 ARG VITE_API_BASE_URL=/api
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+RUN echo "VITE_API_BASE_URL=$VITE_API_BASE_URL" > .env.local
 RUN npm run build
 
 FROM nginx:alpine
