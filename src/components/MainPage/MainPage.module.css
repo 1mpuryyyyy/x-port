@@ -257,6 +257,9 @@
     color: #404040;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .calculator input::placeholder {
