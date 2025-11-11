@@ -47,12 +47,6 @@ export const MainPage = () => {
                 }
             );
         });
-
-        gsap.to(window, {
-            scrollTo: 0,
-            duration: 0,
-            ease: "none",
-        });
     }, []);
 
 
