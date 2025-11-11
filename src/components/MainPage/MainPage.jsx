@@ -16,9 +16,45 @@ import Accordion from '../Accordion/Accordion';
 import lock from "../../assets/lock.svg";
 import garant from "../../assets/garant.png";
 import Slider from '../Slider/Slider';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+gsap.registerPlugin(ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
 export const MainPage = () => {
     const { hash } = useLocation();
+
+
+    useEffect(() => {
+        const sections = gsap.utils.toArray('section > div');
+
+        sections.forEach((el, i) => {
+            gsap.fromTo(
+                el,
+                { autoAlpha: 0, y: 80 },
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    },
+                    delay: i * 0.1,
+                }
+            );
+        });
+
+        gsap.to(window, {
+            scrollTo: 0,
+            duration: 0,
+            ease: "none",
+        });
+    }, []);
+
 
     useEffect(() => {
         const id = hash.replace(/^#\/?/, '');
@@ -108,134 +144,149 @@ export const MainPage = () => {
     ];
     return (
         <section className={style.container}>
-            <div className={style.header} id="about">
-                <div className={style.header__left}>
-                    <div className={style.header__left__benchmark}>
-                        <span className={style.lock}><img src={lock} />SSL-защита</span>
-                        <span>·</span>
-                        <span>Юридическая оферта</span>
-                        <span>·</span>
-                        <span>5+ лет опыта</span>
-                    </div>
+            <div className="scroll-section">
+                <div className={style.header} id="about">
+                    <div className={style.header__left}>
+                        <div className={style.header__left__benchmark}>
+                            <span className={style.lock}><img src={lock} />SSL-защита</span>
+                            <span>·</span>
+                            <span>Юридическая оферта</span>
+                            <span>·</span>
+                            <span>5+ лет опыта</span>
+                        </div>
 
-                    <h1 className={style.header__left__title}>Ваши сделки под защитой. <span>Гарант</span>, которому доверяют</h1>
-                    <p className={style.header__left__description}>XPORT - проводим любые международные сделки. Получаем, фиксируем и переводим средства
-                        продавцу только после подтверждения получения товара.</p>
-                    <div className={style.header__left__buttons}>
-                        <button className={style.greenButton} onClick={handleStartDeal}><p>Подробнее </p> <img className={style.arrow} src={blueArr} /></button>
-                        <button>Как это работает </button>
+                        <h1 className={style.header__left__title}>Ваши сделки под защитой. <span>Гарант</span>, которому доверяют</h1>
+                        <p className={style.header__left__description}>XPORT - проводим любые международные сделки. Получаем, фиксируем и переводим средства
+                            продавцу только после подтверждения получения товара.</p>
+                        <div className={style.header__left__buttons}>
+                            <button className={style.greenButton} onClick={handleStartDeal}><p>Подробнее </p> <img className={style.arrow} src={blueArr} /></button>
+                            <button>Как это работает </button>
+                        </div>
+                    </div>
+                    <div className={style.header__right}>
+                        <div className={style.digits}>
+                            <div className={style.digits__item}>
+                                <p className={style.digits__item__title}>Проведено сделок</p>
+                                <h1>1 250+</h1>
+                            </div>
+                            <div className={style.digits__item}>
+                                <p className={style.digits__item__title}>Средний чек</p>
+                                <h1>$18 400</h1>
+                            </div>
+                            <div className={style.digits__item}>
+                                <p className={style.digits__item__title}>Споры решены</p>
+                                <h1>100%</h1>
+                            </div>
+                            <div className={style.digits__item}>
+                                <p className={style.digits__item__title}>Поддержка</p>
+                                <h1>24/7</h1>
+                            </div>
+                        </div>
+                        <div className={style.calculator}>
+                            <div className={style.garant}>
+                                <img src={garant} />
+                                <h1> Быстрый старт сделки</h1>
+                            </div>
+                            <div className={style.calculator__inputs}>
+                                <div className={style.calculator__input}>
+                                    <label htmlFor="amount">Сумма сделки</label>
+                                    <input type="text" id="amount" placeholder="25 000 $" className={style.calculator__input__number}
+                                        value={amount}
+                                        onChange={handleAmountChange}
+                                        onKeyDown={handleKeyDown}
+                                        ref={inputRef}
+                                    />
+                                </div>
+                                <div className={style.calculator__input}>
+                                    <label htmlFor="direction">Направление</label>
+                                    <select id="direction" className={style.select}>
+                                        <option value="automobiles">Автомобили</option>
+                                        <option value="apartments">Недвижимость</option>
+                                        <option value="luxury">Люксовые товары</option>
+                                        <option value="b2b">B2B сделки</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <button className={`${style.calc__button}`}>Рассчитать комиссию</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className={style.header__right}>
-                    <div className={style.digits}>
-                        <div className={style.digits__item}>
-                            <p className={style.digits__item__title}>Проведено сделок</p>
-                            <h1>1 250+</h1>
-                        </div>
-                        <div className={style.digits__item}>
-                            <p className={style.digits__item__title}>Средний чек</p>
-                            <h1>$18 400</h1>
-                        </div>
-                        <div className={style.digits__item}>
-                            <p className={style.digits__item__title}>Споры решены</p>
-                            <h1>100%</h1>
-                        </div>
-                        <div className={style.digits__item}>
-                            <p className={style.digits__item__title}>Поддержка</p>
-                            <h1>24/7</h1>
-                        </div>
-                    </div>
-                    <div className={style.calculator}>
-                        <div className={style.garant}>
-                            <img src={garant} />
-                            <h1> Быстрый старт сделки</h1>
-                        </div>
-                        <div className={style.calculator__inputs}>
-                            <div className={style.calculator__input}>
-                                <label htmlFor="amount">Сумма сделки</label>
-                                <input type="text" id="amount" placeholder="25 000 $" className={style.calculator__input__number}
-                                    value={amount}
-                                    onChange={handleAmountChange}
-                                    onKeyDown={handleKeyDown}
-                                    ref={inputRef}
-                                />
-                            </div>
-                            <div className={style.calculator__input}>
-                                <label htmlFor="direction">Направление</label>
-                                <select id="direction" className={style.select}>
-                                    <option value="automobiles">Автомобили</option>
-                                    <option value="apartments">Недвижимость</option>
-                                    <option value="luxury">Люксовые товары</option>
-                                    <option value="b2b">B2B сделки</option>
-                                </select>
-                            </div>
-                        </div>
+            </div>
+            <div className="scroll-section">
+                <div className={style.planet}>
+                    <div className={style.planet__ring}></div>
+                    <img
+                        src={planet}
+                        alt="planet background"
+                        className={style.planet__bg}
+                    />
+                    <div className={style.planet__container}>
+                        <h1>На любой точке планеты — ваша сделка под надежным контролем.</h1>
+                        <p>XPORT убирает тревогу, делая глобальные покупки и продажи безопасными. Будьте
+                            свободны - покупайте что угодно и где угодно, зная, что ваши средства в надёжных руках</p>
                         <div>
-                            <button className={`${style.calc__button}`}>Рассчитать комиссию</button>
+                            <button className={style.greenButton} onClick={handleStartDeal}>Подробнее</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={style.planet}>
-                <div className={style.planet__ring}></div>
-                <img
-                    src={planet}
-                    alt="planet background"
-                    className={style.planet__bg}
-                />
-                <div className={style.planet__container}>
-                    <h1>На любой точке планеты — ваша сделка под надежным контролем.</h1>
-                    <p>XPORT убирает тревогу, делая глобальные покупки и продажи безопасными. Будьте
-                        свободны - покупайте что угодно и где угодно, зная, что ваши средства в надёжных руках</p>
-                    <div>
-                        <button className={style.greenButton} onClick={handleStartDeal}>Подробнее</button>
+            <div className="scroll-section">
+                <div className={style.cards} id="directions">
+                    <div className={style.cards__wrapper}>
+                        <CardItem
+                            imageUrl={house}
+                            title="Недвижимость"
+                            description="Покупка дома, квартиры или коммерческой недвижимости"
+                            link="apartments"
+                        />
+                        <CardItem
+                            imageUrl={car}
+                            title="Автомобили"
+                            description="Новые и подержанные авто любого класса"
+                            link="cars"
+                        />
+                    </div>
+                    <div className={style.cards__wrapper}>
+                        <CardItem
+                            imageUrl={lux}
+                            title="Люксовые товары"
+                            description="Аутентичные товары любой ценности - сумки, часы, ювелирные изделия и др"
+                            link="lux-items"
+                        />
+                        <CardItem
+                            imageUrl={b2b}
+                            title="B2B сделки"
+                            description="Коммерческие партии оборудования и товаров"
+                            link="b2b"
+                        />
                     </div>
                 </div>
             </div>
-
-            <div className={style.cards} id="directions">
-                <div className={style.cards__wrapper}>
-                    <CardItem
-                        imageUrl={house}
-                        title="Недвижимость"
-                        description="Покупка дома, квартиры или коммерческой недвижимости"
-                        link="apartments"
-                    />
-                    <CardItem
-                        imageUrl={car}
-                        title="Автомобили"
-                        description="Новые и подержанные авто любого класса"
-                        link="cars"
-                    />
-                </div>
-                <div className={style.cards__wrapper}>
-                    <CardItem
-                        imageUrl={lux}
-                        title="Люксовые товары"
-                        description="Аутентичные товары любой ценности - сумки, часы, ювелирные изделия и др"
-                        link="lux-items"
-                    />
-                    <CardItem
-                        imageUrl={b2b}
-                        title="B2B сделки"
-                        description="Коммерческие партии оборудования и товаров"
-                        link="b2b"
-                    />
-                </div>
+            <div className="steps-section scroll-section">
+                <Slider stepsData={stepsData} subtitle={"От идеи до договора. Все прозрачно"} />
             </div>
-            <Slider stepsData={stepsData} subtitle={"От идеи до договора. Все прозрачно"} />
 
-            <InternetChanges />
+            <div className="scroll-section">
+                <InternetChanges />
+            </div>
 
-            <TrustedFaces />
+            <div className="scroll-section">
+                <TrustedFaces />
+            </div>
 
-            <ReviewsSection />
+            <div className="scroll-section">
+                <ReviewsSection />
+            </div>
 
-            <div id="partners">
+            <div className="scroll-section" id="partners">
                 <Partners />
             </div>
 
-            <Accordion />
+            <div className="scroll-section">
+                <Accordion />
+            </div>
         </section>
     );
 }
