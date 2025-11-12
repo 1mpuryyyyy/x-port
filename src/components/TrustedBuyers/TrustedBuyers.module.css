@@ -203,6 +203,7 @@
     height: 220px;
     object-fit: cover;
     border-radius: 8px;
+    /* filter: invert(0.8); */
 }
 
 /* info */

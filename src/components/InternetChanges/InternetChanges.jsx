@@ -27,8 +27,8 @@ export default function InternetChanges() {
 
     return (
         <div className={styles.root}>
-            <h2 className={styles.title}>Xport менят подход к международным покупкам
-                Присоединяйтесь к новой культуре безопасных сделок</h2>
+            <h2 className={styles.title}><span className={styles.name}>Xport </span>меняет подход к международным покупкам.</h2>
+            <p className={`${styles.subtitle} ${styles.fs_36}`}>Присоединяйтесь к новой культуре безопасных сделок</p>
             <p className={styles.subtitle}>Станьте частью цифровой революции</p>
             <div className={styles.carouselWrapper}>
                 <div className={styles.row}>

@@ -18,9 +18,13 @@
 .subtitle {
     text-align: center;
     color: #d1d5db;
-    font-size: 28px;
+    font-size: 24px;
     margin: 0 0 32px;
     font-weight: 400;
+}
+
+.fs_36 {
+    font-size: 36px;
 }
 
 .carouselWrapper {
@@ -168,12 +172,20 @@
     opacity: 0.87;
 }
 
+.name {
+    color: #18ff90;
+}
+
 @media (max-width: 740px) {
     .title {
         font-size: 32px;
     }
 
     .subtitle {
+        font-size: 18px;
+    }
+
+    .fs_36 {
         font-size: 24px;
     }
 

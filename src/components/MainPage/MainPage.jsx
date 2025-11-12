@@ -27,26 +27,42 @@ export const MainPage = () => {
 
 
     useEffect(() => {
-        const sections = gsap.utils.toArray('section > div');
+        const mediaQuery = window.matchMedia('(min-width: 1001px)');
 
-        sections.forEach((el, i) => {
-            gsap.fromTo(
-                el,
-                { autoAlpha: 0, y: 80 },
-                {
-                    autoAlpha: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse',
-                    },
-                    delay: i * 0.1,
-                }
-            );
-        });
+        const handleMediaChange = (e) => {
+            if (e.matches) {
+                const sections = gsap.utils.toArray('section > div');
+
+                sections.forEach((el, i) => {
+                    gsap.fromTo(
+                        el,
+                        { autoAlpha: 0, y: 80 },
+                        {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: el,
+                                start: 'top 80%',
+                                toggleActions: 'play none none reverse',
+                            },
+                            delay: i * 0.1,
+                        }
+                    );
+                });
+            } else {
+                gsap.killTweensOf('section > div');
+            }
+        };
+
+        handleMediaChange(mediaQuery);
+        mediaQuery.addEventListener('change', handleMediaChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleMediaChange);
+            gsap.killTweensOf('section > div');
+        };
     }, []);
 
 
@@ -83,6 +99,9 @@ export const MainPage = () => {
     };
 
     const [amount, setAmount] = useState('');
+    const [rawAmount, setRawAmount] = useState(0);
+    const [isHaveDiscount, setIsHaveDiscount] = useState(false);
+    const [commission, setCommission] = useState(0);
     const inputRef = useRef();
 
     const handleAmountChange = (e) => {
@@ -93,6 +112,7 @@ export const MainPage = () => {
             const formatted = numbersOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
             const result = formatted + ' $';
             setAmount(result);
+            setRawAmount(Number(numbersOnly));
             return;
         }
 
@@ -100,6 +120,7 @@ export const MainPage = () => {
         const formatted = numbersOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
         const result = formatted + (formatted ? ' $' : '');
         setAmount(result);
+        setRawAmount(Number(numbersOnly));
     };
 
     const handleKeyDown = (e) => {
@@ -118,6 +139,7 @@ export const MainPage = () => {
                 const result = formatted + (formatted ? ' $' : '');
 
                 setAmount(result);
+                setRawAmount(Number(newNumbers));
             }
         }
 
@@ -129,9 +151,20 @@ export const MainPage = () => {
         }
     };
 
+    const calculateCommission = () => {
+        if (rawAmount > 0) {
+            const calculatedCommission = rawAmount * 0.05;
+            setCommission(calculatedCommission);
+            setIsHaveDiscount(true);
+        } else {
+            setIsHaveDiscount(false);
+            setCommission(0);
+        }
+    };
+
     const stepsData = [
         { title: 'Регистрация', description: 'Вы заходите на наш сайт и проходите простую регистрацию — это займёт всего несколько минут.' },
-        { title: 'Выбор продавца', description: 'Из списка проверенных продавцов вы выбираете того, с кем хотите провести сделку.' },
+        { title: 'Выбор продавца', description: 'Из списка проверенных продавцов, Вы выбираете того, с кем хотите провести сделку. Или приводите своего продавца' },
         { title: 'Оформление сделки', description: 'Обсуждение деталей с личным менеджером: условия, сроки сделки, сумма' },
         { title: 'Подтверждение', description: 'Стороны договорились — подтверждаем условия и переводим средства.' },
         { title: 'Завершение', description: 'Сделка завершена, вы получаете товар, продавец - средства.' },
@@ -145,12 +178,10 @@ export const MainPage = () => {
                             <span className={style.lock}><img src={lock} />SSL-защита</span>
                             <span>·</span>
                             <span>Юридическая оферта</span>
-                            <span>·</span>
-                            <span>5+ лет опыта</span>
                         </div>
 
                         <h1 className={style.header__left__title}>Ваши сделки под защитой. <span>Гарант</span>, которому доверяют</h1>
-                        <p className={style.header__left__description}>XPORT - проводим любые международные сделки. Получаем, фиксируем и переводим средства
+                        <p className={style.header__left__description}>XPORT - проводим любые международные сделки.</p> <p className={style.header__left__description}>Получаем, фиксируем и переводим средства
                             продавцу только после подтверждения получения товара.</p>
                         <div className={style.header__left__buttons}>
                             <button className={style.greenButton} onClick={handleStartDeal}><p>Подробнее </p> <img className={style.arrow} src={blueArr} /></button>
@@ -201,8 +232,19 @@ export const MainPage = () => {
                                     </select>
                                 </div>
                             </div>
+                            {isHaveDiscount && (
+                                <div className={style.commission}>
+                                    <p>Комиссия: {commission.toLocaleString('ru-RU')} $</p>
+                                </div>
+                            )}
+
                             <div>
-                                <button className={`${style.calc__button}`}>Рассчитать комиссию</button>
+                                <button
+                                    className={`${style.calc__button}`}
+                                    onClick={calculateCommission}
+                                >
+                                    Рассчитать комиссию
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -218,8 +260,10 @@ export const MainPage = () => {
                     />
                     <div className={style.planet__container}>
                         <h1>На любой точке планеты — ваша сделка под надежным контролем.</h1>
-                        <p>XPORT убирает тревогу, делая глобальные покупки и продажи безопасными. Будьте
-                            свободны - покупайте что угодно и где угодно, зная, что ваши средства в надёжных руках</p>
+                        <div>
+                            <p>Мы убираем тревогу, делая глобальные покупки и продажи безопасными.</p> <p>Будьте
+                                свободны - покупайте что угодно и где угодно, <br /> зная, что ваши средства в надёжных руках</p>
+                        </div>
                         <div>
                             <button className={style.greenButton} onClick={handleStartDeal}>Подробнее</button>
                         </div>

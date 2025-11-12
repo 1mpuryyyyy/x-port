@@ -1,22 +1,23 @@
-import man1 from "../assets/man_1.jpg";
-import woman1 from "../assets/women_1.jpeg";
-import man2 from "../assets/man_2.jpg";
-import woman2 from "../assets/women_2.jpeg";
-import man3 from "../assets/man_3.jpeg";
-import woman3 from "../assets/women_3.jpeg";
-import man4 from "../assets/man_4.jpeg";
-import woman4 from "../assets/women_4.jpeg";
-import man5 from "../assets/man_5.jpeg";
-import woman5 from "../assets/women_5.jpeg";
+// import man1 from "../assets/man_1.jpg";
+// import woman1 from "../assets/women_1.jpeg";
+// import man2 from "../assets/man_2.jpg";
+// import woman2 from "../assets/women_2.jpeg";
+// import man3 from "../assets/man_3.jpeg";
+// import woman3 from "../assets/women_3.jpeg";
+// import man4 from "../assets/man_4.jpeg";
+// import woman4 from "../assets/women_4.jpeg";
+// import man5 from "../assets/man_5.jpeg";
+// import woman5 from "../assets/women_5.jpeg";
+import no_photo from "../assets/no-photo.svg";
 
 const telegramLink = "https://t.me/metrofriend";
 
-export const baseBuyers = [
+export const rawBaseBuyers = [
     {
         id: 1,
         name: "Ильшат",
         market: "Автомобили",
-        photo: man1,
+        photo: '',
         rating: 4.9,
         reviewsCount: 103,
         dealsCount: 43,
@@ -31,13 +32,13 @@ export const baseBuyers = [
             "Регион работы": "Россия, Европа",
             "Форма оплаты": "Карта / СБП / Криптовалюта",
         },
-        gallery: [man1, man1, man1, man1, man1],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 2,
         name: "Екатерина",
         market: "Недвижимость",
-        photo: woman1,
+        photo: '',
         rating: 4.7,
         reviewsCount: 58,
         dealsCount: 21,
@@ -52,13 +53,13 @@ export const baseBuyers = [
             "Регион работы": "Москва и МО",
             "Форма оплаты": "Карта / Безнал",
         },
-        gallery: [woman1, woman1, woman1, woman1, woman1],
+        gallery: ['', '', '', '',  ''],
     },
     {
         id: 3,
         name: "Алексей",
         market: "P2P",
-        photo: man2,
+        photo: '',
         rating: 4.8,
         reviewsCount: 76,
         dealsCount: 31,
@@ -73,13 +74,13 @@ export const baseBuyers = [
             "Регион работы": "Онлайн, международно",
             "Форма оплаты": "Криптовалюта / СБП",
         },
-        gallery: [man2, man2, man2, man2, man2],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 4,
         name: "Ольга",
         market: "Люксовые товары",
-        photo: woman2,
+        photo: '',
         rating: 4.6,
         reviewsCount: 42,
         dealsCount: 18,
@@ -94,13 +95,13 @@ export const baseBuyers = [
             "Регион работы": "Европа / США",
             "Форма оплаты": "PayPal / Карта",
         },
-        gallery: [woman2, woman2, woman2, woman2, woman2],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 5,
         name: "Максим",
         market: "B2B",
-        photo: man3,
+        photo: '',
         rating: 4.95,
         reviewsCount: 210,
         dealsCount: 120,
@@ -115,13 +116,13 @@ export const baseBuyers = [
             "Регион работы": "Россия, СНГ",
             "Форма оплаты": "Безнал / Карта",
         },
-        gallery: [man3, man3, man3, man3, man3],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 6,
         name: "Дарья",
         market: "Автомобили",
-        photo: woman3,
+        photo: '',
         rating: 4.4,
         reviewsCount: 30,
         dealsCount: 12,
@@ -136,13 +137,13 @@ export const baseBuyers = [
             "Регион работы": "Россия",
             "Форма оплаты": "Карта / СБП",
         },
-        gallery: [woman3, woman3, woman3, woman3, woman3],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 7,
         name: "Владимир",
         market: "P2P",
-        photo: man4,
+        photo: '',
         rating: 4.2,
         reviewsCount: 12,
         dealsCount: 5,
@@ -157,13 +158,13 @@ export const baseBuyers = [
             "Регион работы": "Онлайн",
             "Форма оплаты": "СБП / Карта",
         },
-        gallery: [man4, man4, man4, man4, man4],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 8,
         name: "Анастасия",
         market: "Недвижимость",
-        photo: woman4,
+        photo: '',
         rating: 4.85,
         reviewsCount: 96,
         dealsCount: 40,
@@ -178,13 +179,13 @@ export const baseBuyers = [
             "Регион работы": "Москва, Санкт-Петербург",
             "Форма оплаты": "Безнал / Карта",
         },
-        gallery: [woman4, woman4, woman4, woman4, woman4],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 9,
         name: "Сергей",
         market: "Автомобили",
-        photo: man5,
+        photo: '',
         rating: 4.1,
         reviewsCount: 9,
         dealsCount: 2,
@@ -199,13 +200,13 @@ export const baseBuyers = [
             "Регион работы": "Россия",
             "Форма оплаты": "СБП / Карта",
         },
-        gallery: [man5, man5, man5, man5, man5],
+        gallery: ['', '', '', '', ''],
     },
     {
         id: 10,
         name: "Мария",
         market: "Люксовые товары",
-        photo: woman5,
+        photo: '',
         rating: 4.75,
         reviewsCount: 61,
         dealsCount: 29,
@@ -220,10 +221,18 @@ export const baseBuyers = [
             "Регион работы": "Европа, США",
             "Форма оплаты": "PayPal / Карта",
         },
-        gallery: [woman5, woman5, woman5, woman5, woman5],
+        gallery: ['', '', '', '', ''],
     }
 ];
 
+
+export const baseBuyers = rawBaseBuyers.map(buyer => ({
+    ...buyer,
+    photo: buyer.photo || no_photo,
+    gallery: buyer.gallery && buyer.gallery.length
+        ? buyer.gallery.map(img => img || no_photo)
+        : [no_photo],
+}));
 
 const duplicatedBuyers = Array.from({ length: 10 }).map((_, i) => {
     const base = baseBuyers[i % 10];
