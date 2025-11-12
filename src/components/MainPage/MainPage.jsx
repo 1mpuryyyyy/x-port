@@ -19,12 +19,15 @@ import Slider from '../Slider/Slider';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 gsap.registerPlugin(ScrollSmoother);
 gsap.registerPlugin(ScrollTrigger);
 
 export const MainPage = () => {
     const { hash } = useLocation();
-
+    const { isAuthenticated } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 1001px)');
@@ -152,13 +155,18 @@ export const MainPage = () => {
     };
 
     const calculateCommission = () => {
-        if (rawAmount > 0) {
-            const calculatedCommission = rawAmount * 0.05;
-            setCommission(calculatedCommission);
-            setIsHaveDiscount(true);
-        } else {
-            setIsHaveDiscount(false);
-            setCommission(0);
+        if (isAuthenticated) {
+            if (rawAmount > 0) {
+                const calculatedCommission = rawAmount * 0.05;
+                setCommission(calculatedCommission);
+                setIsHaveDiscount(true);
+            } else {
+                setIsHaveDiscount(false);
+                setCommission(0);
+            }
+        }
+        else {
+            navigate('/login')
         }
     };
 

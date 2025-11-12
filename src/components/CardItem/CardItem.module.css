@@ -1,7 +1,7 @@
 .card {
     background-color: #0b0f0e;
     border-radius: 30px;
-    padding: 24px;
+    padding: 20px;
     width: 280px;
     height: 420px;
     display: flex;
@@ -19,7 +19,7 @@
 
 .cardImage {
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -65,7 +65,7 @@
 
 @media (max-width: 740px) {
     .card {
-        padding: 24px;
+        padding: 18px 12px;
         width: 40vw;
         height: 65vw;
     }

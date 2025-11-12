@@ -308,7 +308,7 @@ option {
 .planet {
     position: relative;
     width: 100%;
-    max-width: 770px;
+    max-width: 740px;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
     display: flex;
