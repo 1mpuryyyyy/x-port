@@ -57,7 +57,7 @@ const HowItWorks = ({ stepsData, subtitle }) => {
 
                         {index < stepsData.length - 1 && (
                             <div className={styles.arrow}>
-                                <img src={arrow} alt="arrow" />
+                                <img src={arrow} className={styles.arrowImg} alt="arrow" />
                             </div>
                         )}
                     </React.Fragment>

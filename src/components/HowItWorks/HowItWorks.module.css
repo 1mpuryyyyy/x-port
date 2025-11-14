@@ -251,4 +251,8 @@
         width: 100%;
         min-width: 0;
     }
+
+    .arrowImg {
+        transform: rotate(90deg);
+    }
 }

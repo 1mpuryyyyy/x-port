@@ -157,6 +157,7 @@ export const MainPage = () => {
     const calculateCommission = () => {
         if (isAuthenticated) {
             if (rawAmount > 0) {
+                setIsHaveDiscount(false);
                 const calculatedCommission = rawAmount * 0.05;
                 setCommission(calculatedCommission);
                 setIsHaveDiscount(true);
