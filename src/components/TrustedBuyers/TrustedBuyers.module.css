@@ -652,3 +652,18 @@
 .loadMoreBtn:hover {
     background: #ffffffcc;
 }
+
+.greenButton {
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 22px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.greenButton:hover {
+    background-color: #115531;
+}

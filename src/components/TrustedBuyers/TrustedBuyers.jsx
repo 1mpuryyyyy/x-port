@@ -211,7 +211,7 @@ export default function TrustedBuyersList({ market }) {
 
 
             <div className={styles.loadMoreWrap}>
-                <a href='https://t.me' className={styles.loadMoreBtn} target="blank">Приведите своего байера</a>
+                <a href='https://t.me' className={styles.greenButton} target="blank">Приведите своего байера</a>
                 {filtered.length > 2 && !showAll && (
                     <button className={styles.loadMoreBtn} onClick={handleShowMore}>
                         Загрузить ещё
