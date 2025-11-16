@@ -26,7 +26,7 @@ export default function Footer() {
                         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                             <img src={youtube} alt="YouTube" />
                         </a>
-                        <a href="https://t.me/xport" target="_blank" rel="noopener noreferrer" className={styles.tgIcon}>
+                        <a href="https://t.me/xportcrypto" target="_blank" rel="noopener noreferrer" className={styles.tgIcon}>
                             <img src={telegram} alt="Telegram" />
                         </a>
                         <a href="https://vk.com" target="_blank" rel="noopener noreferrer">
@@ -47,10 +47,10 @@ export default function Footer() {
                 <div className={styles.colCats}>
                     <div className={styles.sectionTitle}>Категории</div>
                     <ul className={styles.catsList}>
-                        <li><a href="#">Автомобили</a></li>
-                        <li><a href="#">Люксовые товары</a></li>
-                        <li><a href="#">Недвижимость</a></li>
-                        <li><a href="#">Маркетплейсы</a></li>
+                        <li><a href="cars">Автомобили</a></li>
+                        <li><a href="lux">Люксовые товары</a></li>
+                        <li><a href="aparts">Недвижимость</a></li>
+                        <li><a href="b2b">Маркетплейсы</a></li>
                     </ul>
                 </div>
             </div>

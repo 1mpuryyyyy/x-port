@@ -78,7 +78,7 @@ export default function Navbar() {
                         <a href="#about" onClick={(e) => handleAnchorClick('about', e)}><p>О нас</p></a>
                         <a href="#directions" onClick={(e) => handleAnchorClick('directions', e)}><p>Направления</p></a>
                         <a href="#how_work" onClick={(e) => handleAnchorClick('how_work', e)}><p>Как это работает</p></a>
-                        <a href="#partners" onClick={(e) => handleAnchorClick('partners', e)}><p>Кенты</p></a>
+                        <a href="#partners" onClick={(e) => handleAnchorClick('partners', e)}><p>Партнеры</p></a>
                         <a href="#contacts" onClick={(e) => handleAnchorClick('contacts', e)}><p>Контакты</p></a>
                         <span className={style.sep}></span>
                         <div className={style.navbar__section}>

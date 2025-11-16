@@ -58,7 +58,7 @@ const Slider = ({ stepsData, subtitle }) => {
     };
 
     return (
-        <div ref={sectionRef} className={styles.wrapper} id="how_work">
+        <div ref={sectionRef} className={styles.wrapper}>
             <div className={styles.header}>
                 <h2 className={styles.title}>Как это работает</h2>
                 <p className={styles.subtitle}>{subtitle}</p>

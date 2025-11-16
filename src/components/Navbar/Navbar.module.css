@@ -172,7 +172,7 @@
     outline: none;
     position: absolute;
     top: 24px;
-    right: 24px;
+    right: 0;
     cursor: pointer;
     z-index: 3;
 }

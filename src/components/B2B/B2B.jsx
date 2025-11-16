@@ -18,6 +18,14 @@ export const B2B = () => {
         { title: 'Безопасная сделка', description: 'Проведите сделку с нашей гарантией: мы обеспечиваем безопасность платежей.' },
         { title: 'Гарантия и поддержка', description: 'После покупки клиент обращается напрямую к байеру для решения всех вопросов, связанных с оказанием услуги.' },
     ];
+
+    const handleAnchorClick = (anchorId, e) => {
+        e.preventDefault();
+        const element = document.getElementById(anchorId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     return (<div className={style.container}>
         <div className={style.header} id="about">
             <div className={style.header__left}>
@@ -31,7 +39,7 @@ export const B2B = () => {
                 <p className={style.header__left__description}>Сделка под защитой. Покупка и продажа без рисков и переплат. Мы гарантируем безопасную сделку через XPORT Escrow</p>
                 <p className={style.header__left__span}> <img src={boldLock} />Гарант, которому доверяют более 1000 клиентов</p>
                 <div className={style.header__left__buttons}>
-                    <button className={style.greenButton} ><p>Начать сделку </p> <img className={style.arrow} src={arr} /></button>
+                    <a className={style.greenButton} onClick={(e) => handleAnchorClick('b2b_buyers', e)}><p>Начать сделку </p> <img className={style.arrow} src={arr} /></a>
                 </div>
             </div>
             <div className={`${style.header__right} ${style.handles}`}>
@@ -39,7 +47,7 @@ export const B2B = () => {
             </div>
         </div>
         <HowItWorks stepsData={stepsData} subtitle={'Совершите сделку своей мечты с полной уверенностью в безопасности сделки.'} />
-        <div className={`${style.buyers} ${style.b2b}`}>
+        <div className={`${style.buyers} ${style.b2b}`} id='b2b_buyers'>
             <TrustedBuyersList market={'B2B'} />
         </div>
     </div>)

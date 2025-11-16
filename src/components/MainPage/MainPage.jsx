@@ -180,8 +180,8 @@ export const MainPage = () => {
     ];
     return (
         <section className={style.container}>
-            <div className="scroll-section">
-                <div className={style.header} id="about">
+            <div className={style.scroll_section}>
+                <div className={style.header}>
                     <div className={style.header__left}>
                         <div className={style.header__left__benchmark}>
                             <span className={style.lock}><img src={lock} />SSL-защита</span>
@@ -259,7 +259,7 @@ export const MainPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="scroll-section">
+            <div className={style.scroll_section} id="about">
                 <div className={style.planet}>
                     <div className={style.planet__ring}></div>
                     <img
@@ -279,8 +279,8 @@ export const MainPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="scroll-section">
-                <div className={style.cards} id="directions">
+            <div className={style.scroll_section} id="directions">
+                <div className={style.cards}>
                     <div className={style.cards__wrapper}>
                         <CardItem
                             imageUrl={house}
@@ -311,27 +311,27 @@ export const MainPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="steps-section scroll-section">
+            <div className={`${style.steps_section} ${style.scroll_section}`} id="how_work">
                 <Slider stepsData={stepsData} subtitle={"От идеи до договора. Все прозрачно"} />
             </div>
 
-            <div className="scroll-section">
+            <div className={style.scroll_section}>
                 <InternetChanges />
             </div>
 
-            <div className="scroll-section">
+            <div className={style.scroll_section}>
                 <TrustedFaces />
             </div>
 
-            <div className="scroll-section">
+            <div className={style.scroll_section}>
                 <ReviewsSection />
             </div>
 
-            <div className="scroll-section" id="partners">
+            <div className={style.scroll_section} id="partners">
                 <Partners />
             </div>
 
-            <div className="scroll-section">
+            <div className={style.scroll_section}>
                 <Accordion />
             </div>
         </section>
