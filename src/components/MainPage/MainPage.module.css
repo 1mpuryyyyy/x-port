@@ -399,15 +399,23 @@ option {
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .planet {
         max-width: 600px;
+    }
+
+    .container {
+        padding-top: 20vh;
     }
 }
 
 @media (max-width: 600px) {
     .planet {
         max-width: 90vw;
+    }
+
+    .container {
+        padding-top: 20vh;
     }
 
 
@@ -426,6 +434,10 @@ option {
 }
 
 @media (max-width: 400px) {
+    .container {
+        padding-top: 35vh;
+    }
+
     .planet__container {
         width: 85%;
         gap: 10px;

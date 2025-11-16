@@ -63,8 +63,10 @@ export const MainPage = () => {
         mediaQuery.addEventListener('change', handleMediaChange);
 
         return () => {
-            mediaQuery.removeEventListener('change', handleMediaChange);
-            gsap.killTweensOf('section > div');
+            if (window.innerWidth > "1000px") {
+                mediaQuery.removeEventListener('change', handleMediaChange);
+                gsap.killTweensOf('section > div');
+            }
         };
     }, []);
 
