@@ -209,13 +209,15 @@ export default function TrustedBuyersList({ market }) {
                 ))}
             </div>
 
-            {filtered.length > 2 && !showAll && (
-                <div className={styles.loadMoreWrap}>
+
+            <div className={styles.loadMoreWrap}>
+                <a href='https://t.me' className={styles.loadMoreBtn} target="blank">Приведите своего байера</a>
+                {filtered.length > 2 && !showAll && (
                     <button className={styles.loadMoreBtn} onClick={handleShowMore}>
                         Загрузить ещё
                     </button>
-                </div>
-            )}
+                )}
+            </div>
         </section>
     );
 }

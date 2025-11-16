@@ -134,6 +134,14 @@
     object-fit: contain;
 }
 
+.highlight {
+    color: var(--light-green);
+}
+
+.highlight:hover {
+    text-decoration: underline;
+}
+
 @media (min-width: 1281px) {
     .header {
         justify-content: flex-start;
@@ -274,6 +282,10 @@
         max-width: 280px;
         padding: 12px 24px;
         font-size: 15px;
+    }
+
+    .highlight {
+        text-decoration: underline;
     }
 }
 
