@@ -25,7 +25,7 @@ export default function Navbar() {
         } else {
             const element = document.getElementById(anchorId);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
 
